@@ -1,0 +1,20 @@
+@SpringBootTest
+class EmployeeServiceTest {
+
+    @Mock
+    private EmployeeRepository repository;
+
+    @InjectMocks
+    private EmployeeService service;
+
+    @Test
+    void testGetAll() {
+        List<Employee> list = List.of(new Employee(1L,"Test","test@mail.com","IT"));
+
+        Mockito.when(repository.findAll()).thenReturn(list);
+
+        assertEquals(1, service.getAll().size());
+    }
+}
+logging.level.root=INFO
+logging.level.com.example=DEBUG
